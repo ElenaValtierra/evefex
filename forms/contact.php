@@ -7,7 +7,7 @@
   */
 
   // Replace contact@example.com with your real receiving email address
-  $receiving_email_address = 'contact@example.com';
+  $receiving_email_address = 'contact@evefex.com';
 
   if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
     include( $php_email_form );
@@ -38,4 +38,33 @@
   $contact->add_message( $_POST['message'], 'Message', 10);
 
   echo $contact->send();
-?>
+
+
+
+  // ------ Video Verion --------
+
+  $message_sent = false;
+  // 2. If the email is set and not empty 
+if(isset($_POST['email']) && $_POST['email'] != ''){
+// 3. If the email is valid 
+  if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+        // 1. We get the data from the form in index.html
+      $userName = $_POST['name'];
+      $userEmail = $_POST['email'];
+      $userSubject = $_POST['subject'];
+      $userMessage = $_POST['message'];
+
+      $to = 'contact@evefex.com';
+      $body = "";
+      $body.= "From: ". $userName ."\r\n";
+      $body.= "Email: ". $userEmail ."\r\n";
+      $body.= "Subject: ". $userSubject ."\r\n";
+      $body.= "Message: ". $userMessage ."\r\n";
+    // mail the email
+    // mail($to, $userMessage, $body);
+
+    $message_sent = true;
+
+  }
+
+}
